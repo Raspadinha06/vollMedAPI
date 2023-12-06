@@ -1,31 +1,31 @@
-package med.voll.api.medico;
+package med.voll.api.domain.medico;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import med.voll.api.endereco.DadosEndereco;
+import med.voll.api.domain.endereco.DadosEndereco;
 
 public record DadosCadastroMedicos(
-        @NotBlank // apenas para strings
+        @NotBlank(message = "Nome é obrigatório") // apenas para strings
         String nome,
 
-        @NotBlank
-        @Email
+        @NotBlank(message = "Email é obrigatório")
+        @Email(message = "Formato do email é inválido")
         String email,
 
-        @NotBlank
+        @NotBlank(message = "Telefone é obrigatório")
         String telefone,
 
-        @NotBlank
+        @NotBlank(message = "CRM é obrigatório")
         @Pattern(regexp = "\\d{4,6}") // para delimitar o comprimento do número
         String crm,
 
-        @NotNull
+        @NotNull(message = "Especialidade é obrigatória")
         Especialidade especialidade,
 
-        @NotNull
+        @NotNull(message = "Dados do endereço são obrigatórios")
         @Valid
         DadosEndereco endereco) {
 }
