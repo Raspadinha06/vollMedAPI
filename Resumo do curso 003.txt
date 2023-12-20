@@ -1,0 +1,57 @@
+01:
+Implementar uma nova funcionalidade no projeto;
+
+Avaliar quando é necessário criar uma classe Service na aplicação;
+
+Criar uma classe Service, com o objetivo de isolar códigos de regras de negócio,
+utilizando para isso a anotação @Service;
+
+Implementar um algoritmo para a funcionalidade de agendamento de consultas;
+
+Realizar validações de integridade das informações que chegam na API;
+
+Implementar uma consulta JPQL (Java Persistence Query Language) complexa em uma interface repository,
+utilizando para isso a anotação @Query.
+
+02:
+Isolar os códigos de validações de regras de negócio em classes separadas,
+utilizando nelas a anotação @Component do Spring;
+
+Finalizar a implementação do algoritmo de agendamento de consultas;
+
+Utilizar os princípios SOLID para deixar o código da funcionalidade de agendamento de consultas mais fácil de entender, evoluir e testar.
+
+03:
+Adicionar a biblioteca SpringDoc no projeto para que ela faça a geração automatizada da documentação da API;
+
+Analisar a documentação do SpringDoc para entender como realizar a sua configuração em um projeto;
+
+Acessar os endereços que disponibilizam a documentação da API nos formatos yml e html;
+
+Utilizar o Swagger UI para visualizar e testar uma API Rest;
+
+Configurar o JWT na documentação gerada pelo SpringDoc.
+
+04:
+Escrever testes automatizados em uma aplicação com Spring Boot;
+
+Escrever testes automatizados de uma interface Repository, seguindo a estratégia de usar o mesmo banco de dados que a aplicação utiliza;
+
+Sobrescrever propriedades do arquivo application.properties, criando outro arquivo chamado application-test.properties que seja carregado apenas ao executar os testes,
+utilizando para isso a anotação @ActiveProfiles;
+
+Escrever testes automatizados de uma classe Controller, utilizando a classe MockMvc para simular requisições na API;
+
+Testar cenários de erro 400 e código 200 no teste de uma classe controller.
+
+05:
+Funciona o build de uma aplicação com Spring Boot;
+
+Utilizar arquivos de propriedades específicos para cada profile, alterando em cada arquivo as propriedades que precisam ser modificadas;
+
+Configurar informações sensíveis da aplicação, como dados de acesso ao banco de dados, via variáveis de ambiente;
+
+Realizar o build do projeto via Maven;
+
+Executar a aplicação via terminal, com o comando java -jar, passando as variáveis de ambiente como parâmetro.
+

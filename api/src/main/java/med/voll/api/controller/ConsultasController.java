@@ -1,36 +1,36 @@
 package med.voll.api.controller;
 
-import med.voll.api.domain.consultas.Consulta;
-import med.voll.api.domain.consultas.ConsultasRepository;
-import med.voll.api.domain.consultas.DadosCadastroConsultas;
-import med.voll.api.domain.medico.MedicoRepository;
-import med.voll.api.domain.paciente.PacienteRepository;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.validation.Valid;
+import med.voll.api.domain.consultas.AgendaDeConsultas;
+import med.voll.api.domain.consultas.DadosAgendamentoConsultas;
+import med.voll.api.domain.consultas.DadosCancelamentoConsultas;
+import med.voll.api.domain.consultas.DadosDetalhamentoConsultas;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/consultas") // Mapeamento de URL
+@RequestMapping("/consultas")
+@SecurityRequirement(name = "bearer-key")
 public class ConsultasController {
-    @Autowired
-    private MedicoRepository repositoryMedico;
 
     @Autowired
-    private PacienteRepository repositoryPaciente;
-
-    @Autowired
-    private ConsultasRepository repositoryConsultas;
+    private AgendaDeConsultas agenda;
 
     @PostMapping
     @Transactional
-    public void agendar(@RequestBody DadosCadastroConsultas dados){
-        var medico = repositoryMedico.getReferenceById(dados.idMedico());
-        var paciente = repositoryPaciente.getReferenceById(dados.idPaciente());
+    public ResponseEntity agendar(@RequestBody @Valid DadosAgendamentoConsultas dados){
+        var dto = agenda.agendar(dados);
+        return ResponseEntity.ok(dto);
+    }
 
-        repositoryConsultas.save(new Consulta(dados, medico, paciente));
+    @DeleteMapping
+    @Transactional
+    public ResponseEntity cancelar(@RequestBody @Valid DadosCancelamentoConsultas dados){
+        agenda.cancelar(dados);
+        return ResponseEntity.noContent().build();
     }
 
 
